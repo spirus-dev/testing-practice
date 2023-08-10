@@ -27,6 +27,22 @@ class calculator{
     }
 }
 
+function caesarCipher(string,shiftFactor){
+    let cipherArray=[]
+    string.split("").forEach(element => {
+        let elementCode=element.charCodeAt(0);
+        if(elementCode>=65 && elementCode<=90){
+            elementCode=(elementCode+shiftFactor)%91 || 65;
+        }
+        else if(elementCode>=97 && elementCode<=122){
+            elementCode=(elementCode+shiftFactor)%123 || 97;
+        }
+        let cipherElement=String.fromCharCode(elementCode);
+        cipherArray.push(cipherElement);
+    });
+    return cipherArray.join("");
+}
+
 function analyzeArray(array){
     return {
         average: Math.floor(array.reduce((previousNumber,currentNumber) => previousNumber+currentNumber,0)/array.length),
@@ -35,4 +51,4 @@ function analyzeArray(array){
         length: array.length
     };
 }
-module.exports={capitalize, reverseString, calculator, analyzeArray};
+module.exports={capitalize, reverseString, calculator, caesarCipher, analyzeArray};
